@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <script>
+        function login(){
+            var usuario = document.getElementById("nome").value;
+            document.getElementById("usuario").innerHTML = usuario;
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <br>
+        <p id="usuario">Visitante</p>
+        <br>
+        <input type="text" placeholder="Insira seu nome" id="nome">
+        <button type="button" onclick="login()">Fazer Login</button><br>
+        <br>
+        <br>
+        <table border="1">
+            <tr>
+                <td><img src="img/eldenring.jpg" width="200"></td>
+                <td>
+                    Elden Ring <br>
+                    R$ (Valor)
+                </td>
+                <td>
+                    <button type="button" onclick="">+</button><br>
+                    (Quantidade) <br>
+                    <button type="button" onclick="">-</button>
+                </td>
+                <td>R$ (Valor total)</td>
+            </tr>
+            <tr>
+                <td><img src="img/bird.jpeg" width="200"></td>
+                <td>
+                    O Sol é para todos <br>
+                    R$ (Valor)
+                </td>
+                <td>
+                    <button type="button" onclick="">+</button><br>
+                    (Quantidade) <br>
+                    <button type="button" onclick="">-</button>
+                </td>
+                <td>R$ (Valor total)</td>
+            </tr>
+        </table>
+        <br><br>
+        <button type="button" onclick="">Finalizar compra</button>
+    </center>
+</body>
+</html>
