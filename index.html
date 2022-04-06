@@ -10,6 +10,74 @@
             var usuario = document.getElementById("nome").value;
             document.getElementById("usuario").innerHTML = usuario;
         }
+
+        var valor1 = 279.9;
+        var quant1 = 1;
+        var total1 = 0;
+
+        var valor2 = 64.9;
+        var quant2 = 1;
+        var total2 = 0;
+        
+        function quantidadeValor(produto, sinal){
+            if(produto == "elden"){
+                switch(sinal){
+                    case "+":
+                        quant1 ++;
+                        break;
+                    case "-":
+                        if(quant1 >= 1)
+                            quant1 --;
+                            break;
+                }
+                document.getElementById("quant1").innerHTML = quant1;
+                total1 = valor1 * quant1;
+                document.getElementById("total1").innerHTML = "R$ " + total1.toFixed(2).replace(".", ",");
+            } else{
+                switch(sinal){
+                    case "+":
+                        quant2 ++;
+                        break;
+                    case "-":
+                        if(quant2 >= 1)
+                            quant2 --;
+                            break;
+                }
+                document.getElementById("quant2").innerHTML = quant2;
+                total2 = valor2 * quant2;
+                document.getElementById("total2").innerHTML = "R$ " + total2.toFixed(2).replace(".", ",");
+            }
+        }
+        
+        function finalizarCompra(){
+            alert("Compra finalizada. Obrigado pela preferência!");
+            
+            var usuario = "Visitante";
+            document.getElementById("usuario").innerHTML = usuario;
+            
+            quant1 = 1;
+            total1 = 0;
+            document.getElementById("quant1").innerHTML = quant1;
+            total1 = valor1 * quant1;
+            document.getElementById("total1").innerHTML = "R$ " + total1.toFixed(2).replace(".", ",");
+
+            quant2 = 1;
+            total2 = 0;
+            document.getElementById("quant2").innerHTML = quant2;
+            total2 = valor2 * quant2;
+            document.getElementById("total2").innerHTML = "R$ " + total2.toFixed(2).replace(".", ",");
+        }
+
+        function removerProduto(id, tbody){
+            var corpo = document.getElementById(tbody);
+            var produto = document.getElementById(id);
+            corpo.removeChild(produto);
+
+            var msg = document.createElement("p");
+            var nodo = document.createTextNode("Produto removido.");
+            msg.appendChild(nodo);
+            corpo.appendChild(msg);
+        }
     </script>
 </head>
 <body>
@@ -22,35 +90,57 @@
         <br>
         <br>
         <table border="1">
-            <tr>
-                <td><img src="img/eldenring.jpg" width="200"></td>
-                <td>
-                    Elden Ring <br>
-                    R$ (Valor)
-                </td>
-                <td>
-                    <button type="button" onclick="">+</button><br>
-                    (Quantidade) <br>
-                    <button type="button" onclick="">-</button>
-                </td>
-                <td>R$ (Valor total)</td>
-            </tr>
-            <tr>
-                <td><img src="img/bird.jpeg" width="200"></td>
-                <td>
-                    O Sol é para todos <br>
-                    R$ (Valor)
-                </td>
-                <td>
-                    <button type="button" onclick="">+</button><br>
-                    (Quantidade) <br>
-                    <button type="button" onclick="">-</button>
-                </td>
-                <td>R$ (Valor total)</td>
-            </tr>
+            <tbody>
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Valor total</th>
+                </tr>
+            </tbody>
+            <tbody id="corpo1">
+                <tr id="produto1">
+                    <td><img src="img/eldenring.jpg" width="200"></td>
+                    <td>
+                        <center>
+                            Elden Ring <br>
+                            R$ 279,90
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            <button type="button" onclick="quantidadeValor('elden','+')">+</button><br>
+                            <p id="quant1">1</p>
+                            <button type="button" onclick="quantidadeValor('elden','-')">-</button>
+                        </center>
+                    </td>
+                    <td><center><p id="total1">R$ 279,90</p></center></td>
+                    <td><button onclick="removerProduto('produto1', 'corpo1')">Remover</button></td>
+                </tr>
+            </tbody>
+            <tbody id="corpo2">
+                <tr id="produto2">
+                    <td><img src="img/sol.jpeg" width="200"></td>
+                    <td>
+                        <center>
+                            O Sol é para todos <br>
+                            R$ 64,90
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            <button type="button" onclick="quantidadeValor('sol','+')">+</button><br>
+                            <p id="quant2">1</p>
+                            <button type="button" onclick="quantidadeValor('sol','-')">-</button>
+                        </center>
+                    </td>
+                    <td><center><p id="total2">R$ 64,90</p></center></td>
+                    <td><button onclick="removerProduto('produto2', 'corpo2')">Remover</button></td>
+                </tr>
+            </tbody>
         </table>
         <br><br>
-        <button type="button" onclick="">Finalizar compra</button>
+        <button type="button" onclick="finalizarCompra()">Finalizar compra</button>
     </center>
 </body>
 </html>
